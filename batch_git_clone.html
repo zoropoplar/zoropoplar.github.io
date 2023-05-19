@@ -9,7 +9,7 @@
     
     <title>
         
-            归档: 2023/4 |
+            批量 git clone |
         
         Zoropoplar&#39;s Blog
     </title>
@@ -83,7 +83,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/archives"
                             >
                                 归档
@@ -127,7 +127,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/archives">归档</a>
                 </li>
             
@@ -157,31 +157,124 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="archive-container ">
-        
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2023</span>
-                <span class="archive-year-post-count">[1]</span>
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">批量 git clone</span>
             </div>
-            <ul class="article-list">
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.png">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">zoropoplar</span>
+                            
+                                <span class="author-label">Lv1</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-03-08 14:54:32</span>
+        <span class="mobile">2023-03-08 14:54</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-19 23:39:50</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
                 
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2023/04/19/batch_git_clone/"
-                        >批量 git clone</a>
-                        <span class="article-date">04-19</span>
+                    <li>
+                        <a href="/tags/Git/">Git</a>&nbsp;
                     </li>
                 
             </ul>
-        </section>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p>首先，新增 <code>git_url_list.txt</code> 文件存放 git url 地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 项目a</span><br><span class="line">https://github.com/xxx/a.git</span><br><span class="line"># 项目b</span><br><span class="line">https://github.com/xxx/b.git</span><br></pre></td></tr></table></figure>
+
+<p>然后，创建一个脚本 <code>batch_git_clone.sh</code>，读取 url 并执行 git clone。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;批量git clone开始！&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> git_url</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 过滤空行，以及#开头的注释行</span></span><br><span class="line">  [[ -z <span class="variable">$git_url</span> || <span class="variable">$git_url</span> =~ ^<span class="comment">#.* ]] &amp;&amp; continue</span></span><br><span class="line">  git <span class="built_in">clone</span> <span class="variable">$&#123;git_url&#125;</span>;</span><br><span class="line"><span class="keyword">done</span> &lt; <span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">wait</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;批量git clone结束！&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后，执行脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./batch_git_clone.sh git_url_list.txt</span><br></pre></td></tr></table></figure>
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Git/">#Git</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/git_multi_account_config.html"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Git 多账户配置</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
     </div>
 </div>
+
 
                 
             </div>
@@ -232,6 +325,19 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -309,6 +415,12 @@
 
 
 <div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
     
 </div>
 
